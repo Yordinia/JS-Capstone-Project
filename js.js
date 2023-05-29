@@ -13,7 +13,10 @@ function organizeItems(items) {
     let filtered = items.filter(item=>{
     return item.category === prop;
     })
-    let array = filtered.reduce((a, v) => ([ ...a, v.itemName]), []);
+    let array = filtered.reduce((a, v) => {
+        let str = v.onSale? v.itemName+'($)' : v.itemName;
+        return [ ...a, str]
+    }, []);
     console.log('array',prop, array)
     return {...prev, [prop]: array }
   }, null)
